@@ -1,0 +1,720 @@
+@import "mixin";
+a{
+    font-size: 12px;
+    color: rgb(102,102,102);
+}
+h3{
+    font-size: 12px;
+    font-weight: normal;
+    color: rgb(51,51,51);
+}
+.header{
+    width: 100%;
+    height: 44px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 90;
+    @include middleRespond{
+        height: 48px;
+    };
+    
+    
+    .header-inner{
+        max-width: 1000px;
+        height: 44px;
+        margin: 0 auto;
+        .phone-lists{
+            width: 100%;
+            height: 48px;
+            padding: 0 48px;
+            margin: 0 auto;
+            display: none;
+            @include middleRespond{
+                display: block;
+                text-align: justify;
+            }
+            .phone-item{
+                display: inline-block;
+                transition: opacity .3s ease;
+            }
+            .nav-hidden{
+                width: 100%;
+                height: auto;
+                position: absolute;
+                top: 48px;
+                left: 0px;
+                padding: 0px 48px;
+                background-color: #000;
+                a{
+                    margin: 0px;
+                }
+            }
+           .bread{
+               width: 48px;
+               height: 48px;
+               position: absolute;
+               top: 0;
+               left: 0;
+               .crusts{
+                   width: 17px;
+                   height: 1px;
+                   position: absolute;
+                   top: 20px;
+                   left: 16px;
+                   background-color: #fff;
+                   animation: zhuanhui1 1s ease .3s 1 both;
+               }
+               .crustx{
+                   width: 17px;
+                   height: 1px;
+                   position: absolute;
+                   top: 27px;
+                   left: 16px;
+                   background-color: #fff;
+                   animation: zhuanhui2 1s ease .3s 1 both;
+               }
+ @keyframes zhuanhui1 {
+   0%{transform: rotate3d(0,0,1,45deg) translate3d(0,5px,0);}
+   100%{transform: rotate3d(0,0,1,0deg) translate3d(0,0,0);
+   }
+}
+ @keyframes zhuanhui2 {
+   0%{transform: rotate3d(0,0,1,-45deg) translate3d(0,-5px,0);}
+   100%{transform: rotate3d(0,0,1,0deg) translate3d(0,0,0);
+   }
+}
+
+           }
+           &::after{
+               content: '';
+               display: inline-block;
+               width: 100%;
+           }
+           .chuxian{
+               .nav-hidden{
+                   opacity: 0;
+                   transform: translate3d(0,0,0);
+               }
+           }
+           
+            .xie{
+            
+               .crusts{
+//                 display: none;
+                   animation: zhuan1 1s ease .3s 1 both;
+               }
+               .crustx{
+                  
+                  animation: zhuan2 1s ease .3s 1 both;
+               }
+              
+           }
+           
+         @keyframes zhuan1 {
+   0%{transform: rotate3d(0,0,1,0deg);}
+   100%{transform: rotate3d(0,0,1,45deg) translate3d(0,5px,0);
+   }
+
+}
+  @keyframes zhuan2 {
+   0%{transform: rotate3d(0,0,1,0deg);}
+   100%{transform: rotate3d(0,0,1,-45deg) translate3d(0,-5px,0);
+   }
+
+}
+           
+           
+           
+        }
+       
+        a{
+            display: block;
+            height: 44px;
+        }
+        $phone-map:(
+                "apple_small":21px,
+                "mac_small":36px,
+                "ipad_small":35px,
+                "iphone_small":58px,
+                "watch_small":52px,
+                "tv_small":23px,
+                "music_small":48px,
+                "support_small":68px,
+                "search_small":22px,
+                "bag_small":19px
+            );
+        @each $i in map-keys($phone-map){
+            .#{$i}{
+                width: map-get($phone-map,$i);
+                background: url("../images/"+$i+".svg") no-repeat center center;
+            }
+        }    
+        .nav-lists{
+            text-align: justify;
+            @include middleRespond{
+                display: none;
+            };
+            .nav-item{
+                display: inline-block;
+                transition: opacity .3s ease;
+                &:hover{
+                    opacity: 0.5;
+                }
+                a{
+                    display: block;
+                    height: 44px;
+                }
+            }
+            &::after{
+                content: '';
+                display: inline-block;
+                width: 100%;
+            }     
+        }
+        $nav-map:(
+            "apple":20px,
+            "mac":31px,
+            "ipad":30px,
+            "iphone":48px,
+            "watch":44px,
+            "tv":20px,
+            "music":40px,
+            "support":57px,
+            "search":20px,
+            "bag":18px
+        );
+        @each $i in map-keys($nav-map){
+            .#{$i}{
+                width: map-get($nav-map,$i);
+                background: url("../images/"+$i+".svg") no-repeat center center;
+            }
+        }
+        
+    }
+    
+    
+    
+    
+    .menu{
+        transition: transform .8s ease;
+        transform: scale(1,1);
+    }
+    //***********search*********************
+    .search-box{
+        width: 680px;
+        height: auto;
+        @include zuoyouCenter;
+        overflow: hidden;
+        .sousuo{
+            width: 680px;
+            height: 44px;
+            position: relative;
+            .search{
+                width: 40px;
+                height: 44px;
+                display: inline-block;
+            }
+            input{
+                width: 640px;
+                border: 0;
+                outline: none;
+                background: rgba(51, 51, 51, 1);
+                display: inline-block;
+                @include shangxiaCenter;
+            }
+        }
+        .search-inner{
+            transition: transform .8s ease;
+            transform: translate3d(100%,0,0);
+            opacity: 0;
+            height: 44px;
+        }
+        .card{
+            width: 100%;
+            height: auto;
+            background-color: #FFFFFF;
+            opacity: 0;
+            padding: 10px;
+            li{
+                height: 30px;
+                padding: 5px 5px 0 20px;
+                position: relative;
+                color: #999;
+                font-size: 15px;
+                transform: translate3d(200px,0,0);
+                opacity: 0;
+                &:hover{
+                  background: #f2f2f2;
+                  color: #0070c9;
+                  cursor: pointer;
+                }
+            }
+            @for $i from 1 through 7 {
+                li:nth-child(#{$i}){
+        transition: transform .8s ease ($i)/2*0.2s,opacity .8s ease ($i)/2*0.2s;
+      }
+    }
+        }
+    }
+    
+}
+.searching{
+        .menu{
+            transition: transform .8s ease;
+            transform: scale(0,0);
+            
+        }
+        .search-box .search-inner{
+            transform: translate3d(0,0,0);
+            opacity: 1;
+        }
+        .search-box .card li{
+            transform: translate3d(0,0,0);
+            opacity: 1;
+        }
+        .search-box .card{
+            transition: opacity .8s ease;
+            opacity:1;
+        }
+    }
+//**************header*********************
+//**************banner***************************
+.banner-box{
+    width: 100%;
+    height: 540px;
+    margin: 0 auto;
+//  background-color: #000000;
+    height: calc(100vh-76px);
+    position: relative;
+    overflow: hidden;
+    .gallery{
+        height: 100%;
+        a{
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-size: contain;
+            background-position: bottom center;
+            background-repeat: no-repeat;
+            position: absolute;
+            top: 0;
+            left: 0; 
+//          display: none;
+        }
+        .active{
+            transition: transform .8s ease;
+            transform:  translate3d(0,0,0);
+            z-index: 2;
+            display: block;
+        }
+        .left{
+            display: block;
+            transform: translate3d(-100%,0,0);
+        }
+        .right{
+            display: block;
+            transform: translate3d(100%,0,0);
+        }
+        .leave{
+            display: block;
+            transition: transform .8s ease;
+            transform: translate3d(-300px,0,0);
+            z-index: 1;
+        }
+        .enter{
+            display: block;
+            transition: transform .8s ease;
+            transform: translate3d(300px,0,0);
+            z-index: 1;
+        }
+    }
+    .doc-lists{
+        width: 240px;
+        height: 22px;
+        position: absolute;
+        bottom: 20px;
+        z-index: 20;
+        text-align: justify;
+        @include zuoyouCenter;
+        .docs{
+            width: 50px;
+            height: 2px;
+            display: inline-block;
+            cursor: pointer;
+            padding: 10px 0;
+            .xi{
+                height: 2px;
+                background-color: rgba(220,220,220, 1);
+                position: relative;
+               .hua{
+                   width: 0px;
+                   height: 2px;
+                   position: absolute;
+                   top: 0;
+                   left: 0;
+                   
+                   background-color: rgba(128,128,128,1);
+               }
+            }
+             .active{
+                    
+                    .hua{
+                        transition: width 2s ease;
+                        width: 100%;
+                    }
+                }
+        }
+        &::after{
+            content: '';
+            display: inline-block;
+            width: 100%;
+        }
+    }
+    .buttun{
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 3;
+        width: 100%;
+        height: 100%;
+        button{
+            @include yuan(60px);
+            z-index: 1000;
+            border-radius: 32px;
+            border: none;
+            background-color: rgba(180,180,180,0.25);
+            color: #848484;
+            font-size: 40px;
+            line-height: 60px;
+            opacity: 0;
+            cursor: pointer;
+            @include shangxiaCenter;
+            transition: opacity .5s ease;
+            &:hover{
+                opacity: 1;
+            }
+//          right: 18px;
+        }
+    }
+    .buttun .right{
+        position: absolute;
+        right: 0;
+        cursor: pointer;
+        width: 20%;
+        height: 100%;
+        z-index: 3;
+        button{
+            right: 18px;
+        }
+    }
+    .buttun .left{
+        position: absolute;
+        left: 0;
+        cursor: pointer;
+        width: 20%;
+        height: 100%;
+        z-index: 3;
+        button{
+            left: 18px;
+        }
+    }
+    //*******wenzi************
+    .content{
+        width: 100%;
+        height: 460px;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        h1{
+            margin: 0 0 0.45em 0;
+            position: relative;
+            left: 50%;
+        }
+        h2{
+            width: 100%;
+            color: #FFFFFF;
+            font-size: 42px;
+            line-height: 1;
+            font-weight: normal;
+            letter-spacing: 0em;
+            margin-top: 0.3em;
+            font-weight: 200;
+            position: relative;
+            text-align: center;
+            margin: 0 0 0.45em 0;
+        }
+    }
+    
+}
+$banner-map:(
+        "iphone":#000,
+        "watch":#f2f2f2,
+        "airpods":#fff,
+        "event":#000,
+);
+@each $i in map-keys($banner-map){
+    .#{$i}{
+        
+        background: url("../images/"+$i+"_large.jpg");
+        background-color: map-get($banner-map,$i);
+        position: relative;
+    }
+}
+.iphone{
+    .content{
+        .iphone-h1{
+            width: 95px;
+            height: 24px;
+            background-size: 95px 24px;
+            background: url("../images/logo_iphone_large.png") no-repeat center center;
+            margin-left: -47.5px;
+        }
+
+    }
+    
+}
+.watch{
+    .content{
+        .watch-h1{
+            width: 148px;
+            height: 56px;
+            background-size: 148px 56px;
+            background-repeat: no-repeat;
+            background-image: url("../images/logo_watch_large.png");
+            left: 50%;
+            margin-left: -74px;
+            position: relative;
+        }
+    }
+}
+
+.airpods{
+    .content{
+        .airpods-h1{
+            width: 108px;
+            height: 23px;
+            background-size: 108px 23px;
+            background-repeat: no-repeat;
+            background-image: url("../images/logo_airpods_large.png");
+            left: 50%;
+            margin-left: -54px;
+            position: relative;
+        }
+        .airpods-h2{
+            color: #000000;
+        }
+    }
+}
+.event{
+    .content{
+        .event-h1{
+            width: 283px;
+            height: 30px;
+            background-size: 283px 30px;
+            background-repeat: no-repeat;
+            background-image: url("../images/logo_event_large.png");
+            left: 50%;
+            margin-left: -141.5px;
+            position: relative;
+        }
+        
+    }
+}
+//**************banner***************************
+//****************picture**********************
+.row{
+    overflow: hidden;
+    
+}
+.col{
+    float: left;
+    height: 200px;
+}
+$adsname:"ios","watchos","swift_playgrounds","music";
+@each $i in $adsname{
+    .#{$i}{
+        background:url("../images/" + $i + "_large.jpg") center center no-repeat;
+    }
+}
+@for $i from 1 through 12{
+    .d-#{$i}{
+        width: percentage($i/12);
+    }
+}
+@for $i from 1 through 5{
+    .t-#{$i}{
+        width: percentage($i/5);
+    }
+}
+@include middleRespond{
+  @each $i in $adsname{
+    .#{$i}{
+      background:url("../images/" + $i + "_medium.jpg") center center no-repeat;
+      box-sizing: border-box;
+    }
+  }
+  @for $i from 1 through 12{
+    .m-#{$i}{
+      width:percentage($i/12);
+    }
+  }
+}
+@include smallRespond{
+  @each $i in $adsname{s
+    .#{$i}{
+      background:url("../images/" + $i + "_small.jpg") center center no-repeat;
+      box-sizing: border-box;
+    }
+  }
+  @for $i from 1 through 12{
+    .s-#{$i}{
+      width:percentage($i/12);
+    }
+  }
+}
+//****************picture**********************
+//****************footer**********************
+
+
+
+.footer{
+    width: 100%;
+    height: auto;
+    background-color: rgb(242,242,242);
+    .footer-nav{
+        max-width: 1024px;
+        height: auto;
+        margin: 0 auto;
+        padding: 0px 22px;
+        .mar{
+            margin-top: 24px;
+        }
+        .foot-nav{
+            width: 100%;
+            height:240px;
+            padding-top: 20px;
+            text-align: justify;
+            input{
+                display: none;
+            }
+            .lit{
+                display: inline-block;
+                height: auto;
+                a:hover{
+                    text-decoration: underline;
+                    
+                }
+                @include middleRespond{
+                    .mar{
+                        margin-top: 0px;
+                    }
+                    ul{
+                        display: none;
+                    }
+                    h3{
+                        width: 100%;
+                        padding: 8px 0;
+                        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+                        cursor: pointer;
+                    }
+                    input{
+                        display: block;
+                      }
+                      #ch1,#ch2,#ch3,#ch4,#ch5,#ch6,#ch7{
+                        display: none;
+                      }
+//                    #ch1:checked ~ ul{
+//                      display: block;
+//                    }
+                      @for $i from 1 through 7{
+                          #ch#{$i}:checked ~ ul{
+                              display: block;
+                          }
+                      }
+                    
+                }
+               
+            }
+            &::after{
+                content:'';
+                display: inline-block;
+                width: 100%;
+                height: 0;
+                font-size: 0;
+                line-height: 0;
+            }
+        }
+        
+         //******************************************  
+    .footer-bot{
+        width: 100%;
+        color: #999999;
+        padding: 20px 0 24px;
+        font-size: 12px;
+        font-weight: normal;
+//      line-height: 20px;
+        overflow: hidden;
+        .shop{
+            width: 100%;
+            font-size: 12px;
+            width: 100%;
+            border-bottom: 1px solid #e3e3e3;
+            margin-bottom: 6px;
+            padding-bottom: 5px;
+            text-align: left;
+            line-height: 20px;
+            a{
+                color: #0070c9;
+            }
+        }
+        .local{
+            width: auto;
+            float: right;
+            a{
+                display: block;
+                line-height: 16px;
+                span{
+                    display: inline-block;
+                    width: 16px;
+                    height: 16px;
+                    vertical-align: middle;
+                    background: url("../images/16 (1).png");
+                    
+                }
+            }
+            @include middleRespond{
+                float: none;
+            }
+        }
+        .legal{
+            .legal1{
+                float: left;
+                margin-right: 26px;
+            }
+            .legal2{
+                float: left;
+                a{
+                    float: left;
+                    font-size: 12px;
+                    border-right: 1px solid #d6d6d6;
+                    margin-right: 10px;
+                    padding-right: 12px;
+                    white-space: nowrap;
+                    &:hover{
+                        color: #333;
+                        text-decoration: underline;      
+                    }
+                }
+            }
+        }
+    }
+ 
+    }
+    
+}
+
+
+
+//****************footer**********************
